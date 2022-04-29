@@ -1,6 +1,15 @@
 import { LockClosedIcon } from '@heroicons/react/solid'
+import {  useDispatch } from 'react-redux';
+import { login } from '../appreducer';
 
 export default function LoginForm() {
+  const dispatch = useDispatch()
+  const onSubmit = (event) => {
+    event.preventDefault();
+    dispatch(login());
+    console.log("submission prevented");
+  };
+
   return (
     <>
       {/*
@@ -18,7 +27,7 @@ export default function LoginForm() {
             <h2 className="mt-6 text-center text-3xl font-extrabold text-gray-900">Login in to your account</h2>
             
           </div>
-          <form className="mt-8 space-y-6" action="#" method="POST">
+          <form className="mt-8 space-y-6" onSubmit={onSubmit} method="POST">
             <input type="hidden" name="remember" defaultValue="true" />
             <div className="rounded-md shadow-sm -space-y-px">
               <div>
@@ -74,11 +83,12 @@ export default function LoginForm() {
             <div>
               <button
                 type="submit"
+                
                 className="group relative w-full flex justify-center py-2 px-4 m-3 border border-solid text-sm font-medium rounded-md text-black bg-gray-300 hover:bg-stone-900 hover:text-white focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
                 <span className="absolute left-0 inset-y-0 flex items-center pl-3">
                   <LockClosedIcon className="h-5 w-5 text-stone-900 group-hover:text-indigo-400" aria-hidden="true" />
                 </span>
-                Sign in
+                Log in
               </button>
             </div>
           </form>
